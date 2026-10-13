@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Página de ajustes propia (no toca la de Ajustes Generales). -->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.color.ui</field>
+        <field name="model">res.config.settings</field>
+        <field name="arch" type="xml">
+            <form string="Color de la interfaz" class="oe_form_configuration">
+                <div class="app_settings_block">
+                    <h2>Color de la interfaz</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="brand_color" string="Color de marca"/>
+                                <div class="text-muted">
+                                    Escribe el color en formato hexadecimal (por ejemplo
+                                    <b>#b51f23</b>). Se aplica a la barra superior, los botones
+                                    principales, las facetas del buscador y el menú de aplicaciones.
+                                </div>
+                                <div class="content-group mt16">
+                                    <field name="brand_color" class="oe_inline"
+                                           placeholder="#b51f23"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer>
+                    <button string="Guardar" type="object"
+                            name="action_save_and_reload" class="btn-primary"/>
+                    <button string="Descartar" type="object"
+                            name="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_color_ui_config" model="ir.actions.act_window">
+        <field name="name">Color de la interfaz</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="view_id" ref="res_config_settings_view_form"/>
+    </record>
+
+    <menuitem id="menu_color_ui_config"
+              name="Color de la interfaz"
+              parent="base.menu_administration"
+              action="action_color_ui_config"
+              groups="base.group_system"
+              sequence="90"/>
+
+</odoo>
