@@ -20,10 +20,12 @@ odoo19uicolorchange/
 │   ├── ir_http.py                 # expone el color en session_info
 │   └── res_config_settings.py     # campo de color en Ajustes
 ├── views/
-│   └── res_config_settings_views.xml   # página de Ajustes + menú
-└── static/src/
-    ├── css/navbar_color.css       # tema (usa la variable --brand-navbar-color)
-    └── js/navbar_color.js         # aplica el color de la sesión como variable CSS
+│   └── res_config_settings_views.xml   # sección en Ajustes + menú
+└── static/
+    ├── description/icon.png       # ícono de la sección en Ajustes
+    └── src/
+        ├── css/navbar_color.css   # tema (usa la variable --brand-navbar-color)
+        └── js/navbar_color.js     # aplica el color de la sesión como variable CSS
 ```
 
 > ⚠️ **El nombre de la carpeta debe ser `odoo19uicolorchange`** (es el nombre
@@ -49,7 +51,8 @@ odoo19uicolorchange/
 1. Instalar el módulo (Apps → actualizar lista → "Color de la Interfaz").
 2. Ir a **Ajustes → Color de la interfaz** (visible para administradores).
 3. Escribir el color en hexadecimal, p. ej. `#1565C0`.
-4. **Guardar**: la página se recarga y el color se aplica de inmediato.
+4. Pulsar **Guardar** (botón de Ajustes, arriba): la página se recarga y el color
+   se aplica de inmediato.
 
 Ejemplos:
 

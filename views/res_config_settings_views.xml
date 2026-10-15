@@ -1,38 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Página de ajustes propia (no toca la de Ajustes Generales). -->
+    <!-- Sección propia dentro de Ajustes. Se usa la vista estándar de Ajustes
+         porque su botón Guardar llama a execute(), que es lo que escribe el
+         color en ir.config_parameter y recarga la página. -->
     <record id="res_config_settings_view_form" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.color.ui</field>
         <field name="model">res.config.settings</field>
+        <field name="priority" eval="90"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <form string="Color de la interfaz" class="oe_form_configuration">
-                <div class="app_settings_block">
-                    <h2>Color de la interfaz</h2>
-                    <div class="row mt16 o_settings_container">
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_right_pane">
-                                <label for="brand_color" string="Color de marca"/>
-                                <div class="text-muted">
-                                    Escribe el color en formato hexadecimal (por ejemplo
-                                    <b>#b51f23</b>). Se aplica a la barra superior, los botones
-                                    principales, las facetas del buscador y el menú de aplicaciones.
-                                </div>
-                                <div class="content-group mt16">
-                                    <field name="brand_color" class="oe_inline"
-                                           placeholder="#b51f23"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <footer>
-                    <button string="Guardar" type="object"
-                            name="action_save_and_reload" class="btn-primary"/>
-                    <button string="Descartar" type="object"
-                            name="cancel" class="btn-secondary"/>
-                </footer>
-            </form>
+            <xpath expr="//form" position="inside">
+                <app data-string="Color de la interfaz" string="Color de la interfaz"
+                     name="odoo19uicolorchange" groups="base.group_system">
+                    <block title="Color de la interfaz" name="odoo19uicolorchange_block">
+                        <setting string="Color de marca"
+                                 help="Código hexadecimal (por ejemplo #b51f23). Se aplica a la barra superior, los botones principales, las facetas del buscador y el menú de aplicaciones.">
+                            <field name="brand_color" placeholder="#b51f23"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
         </field>
     </record>
 
@@ -40,8 +28,7 @@
         <field name="name">Color de la interfaz</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
-        <field name="target">current</field>
-        <field name="view_id" ref="res_config_settings_view_form"/>
+        <field name="context">{'module': 'odoo19uicolorchange', 'bin_size': False}</field>
     </record>
 
     <menuitem id="menu_color_ui_config"
